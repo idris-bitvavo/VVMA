@@ -120,6 +120,12 @@ docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
 npm start
 ```
 
+### Walkthrough Guide
+👉 Walkthrough by [CyberPreacher](https://www.linkedin.com/in/cyber-preacher/)
+
+(https://medium.com/@cyberpreacher_/very-vulnerable-management-api-walkthrough-671b8b605bef)
+
+
 ### Contributing 🤝
 We welcome contributions to improve Very Vulnerable Management API (VVMA)! Whether you want to suggest new features, fix issues, or enhance documentation, your help is appreciated.
 
