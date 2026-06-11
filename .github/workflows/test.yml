@@ -22,8 +22,7 @@ inputs:
     description: "Aikido Safe Chain version to install"
     default: "1.5.7"
     required: false
-
-name: "Test Aikido"
+    
 on:
   pull_request: {}
 jobs:
