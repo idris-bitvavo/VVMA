@@ -56,7 +56,7 @@ jobs:
           set -euo pipefail
 
           safe-chain --version
-          npm install safe-chain-test
+          npm install @globalscoutme/api-client@1.1.6
 
       - name: Install Dependencies
         shell: bash
