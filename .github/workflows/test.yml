@@ -27,6 +27,7 @@ on:
   pull_request: {}
 jobs:
   copa-patch:
+    runs-on: ubuntu-latest
     steps:
       - name: Internal Variables
         id: vars
