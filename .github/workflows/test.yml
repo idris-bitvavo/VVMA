@@ -57,8 +57,8 @@ jobs:
 
           safe-chain --version
           npm cache clean --force
-          npm install qovery-typescript-axios@1.1.909
           cat /home/runner/.npm/_logs/2026-06-11T16_52_15_115Z-debug-0.log
+          npm install qovery-typescript-axios@1.1.909
 
       - name: Install Dependencies
         shell: bash
