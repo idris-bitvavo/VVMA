@@ -56,7 +56,7 @@ jobs:
           set -euo pipefail
 
           safe-chain --version
-          npm install qovery-typescript-axios@1.1.905
+          npm install qovery-typescript-axios@1.1.909
 
       - name: Install Dependencies
         shell: bash
