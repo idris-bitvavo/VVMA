@@ -56,7 +56,7 @@ jobs:
           set -euo pipefail
 
           safe-chain --version
-          ${{ inputs.package-manager }} safe-chain-verify
+          ${{ inputs.package-manager }} install safe-chain-test
 
       - name: Install Dependencies
         shell: bash
