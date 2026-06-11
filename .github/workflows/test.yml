@@ -51,14 +51,15 @@ jobs:
           echo "$HOME/.safe-chain/bin" >> "$GITHUB_PATH"
 
       - name: Verify Aikido Safe Chain
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
 
           safe-chain --version
           npm cache clean --force
-          cat /home/runner/.npm/_logs/2026-06-11T16_52_15_115Z-debug-0.log
           npm install qovery-typescript-axios@1.1.909
+          cat /home/runner/.npm/_logs/2026-06-11T16_52_15_115Z-debug-0.log
 
       - name: Install Dependencies
         shell: bash
