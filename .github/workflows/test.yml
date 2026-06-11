@@ -1,28 +1,6 @@
 name: "NodeJS Setup"
 description: "Sets up Node.js with package manager, caching, and installs dependencies"
 
-inputs:
-  node-version:
-    description: "Node.js version to use"
-    required: true
-  package-manager:
-    description: "Package manager to use (npm, yarn, or pnpm)"
-    default: "yarn"
-    required: false
-  package-manager-version:
-    description: "Optional package manager version. Used to pin pnpm via corepack"
-    required: false
-  registry-url:
-    description: "Optional registry URL for publishing scenarios"
-    required: false
-  # github-token:
-  #   description: "GitHub token for private package access"
-  #   required: true
-  safe-chain-version:
-    description: "Aikido Safe Chain version to install"
-    default: "1.5.7"
-    required: false
-
 on:
   pull_request: {}
 jobs:
@@ -66,7 +44,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          npm install -g "@aikidosec/safe-chain@${{ inputs.safe-chain-version }}"
+          npm install -g "@aikidosec/safe-chain@1.5.7"
           safe-chain setup-ci
 
           echo "$HOME/.safe-chain/shims" >> "$GITHUB_PATH"
