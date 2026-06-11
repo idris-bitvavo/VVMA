@@ -28,7 +28,6 @@ on:
   pull_request: {}
 jobs:
   copa-patch:
-    name: "Copa Patch"
   steps:
     - name: Internal Variables
       id: vars
