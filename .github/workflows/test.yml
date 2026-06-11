@@ -22,68 +22,68 @@ inputs:
     description: "Aikido Safe Chain version to install"
     default: "1.5.7"
     required: false
-    
+
 on:
   pull_request: {}
 jobs:
   copa-patch:
-  steps:
-    - name: Internal Variables
-      id: vars
-      uses: actions/github-script@v8
-      env:
-        PACKAGE_MANAGER: npm
-      with:
-        script: |
-          // Prevent lifecycle scripts from running during dependency install.
-          let installCmd;
-          switch (process.env.PACKAGE_MANAGER) {
-            case 'yarn':
-              installCmd = 'yarn install --frozen-lockfile --ignore-scripts';
-              break;
-            case 'npm':
-              installCmd = 'npm ci --ignore-scripts';
-              break;
-            case 'pnpm':
-              installCmd = 'pnpm install --frozen-lockfile --ignore-scripts';
-              break;
-            default:
-              core.setFailed(`Unknown package-manager '${process.env.PACKAGE_MANAGER}'. Supported values: npm, yarn, pnpm.`);
-              return;
-          }
-          core.setOutput('install-dependencies-cmd', installCmd);
+    steps:
+      - name: Internal Variables
+        id: vars
+        uses: actions/github-script@v8
+        env:
+          PACKAGE_MANAGER: npm
+        with:
+          script: |
+            // Prevent lifecycle scripts from running during dependency install.
+            let installCmd;
+            switch (process.env.PACKAGE_MANAGER) {
+              case 'yarn':
+                installCmd = 'yarn install --frozen-lockfile --ignore-scripts';
+                break;
+              case 'npm':
+                installCmd = 'npm ci --ignore-scripts';
+                break;
+              case 'pnpm':
+                installCmd = 'pnpm install --frozen-lockfile --ignore-scripts';
+                break;
+              default:
+                core.setFailed(`Unknown package-manager '${process.env.PACKAGE_MANAGER}'. Supported values: npm, yarn, pnpm.`);
+                return;
+            }
+            core.setOutput('install-dependencies-cmd', installCmd);
 
-    - name: Set Up Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version: 22
-        cache: ${{ inputs.package-manager }}
-        token: ${{ inputs.github-token }}
+      - name: Set Up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: ${{ inputs.package-manager }}
+          token: ${{ inputs.github-token }}
 
-    - name: Install Aikido Safe Chain
-      shell: bash
-      run: |
-        set -euo pipefail
+      - name: Install Aikido Safe Chain
+        shell: bash
+        run: |
+          set -euo pipefail
 
-        npm install -g "@aikidosec/safe-chain@${{ inputs.safe-chain-version }}"
-        safe-chain setup-ci
+          npm install -g "@aikidosec/safe-chain@${{ inputs.safe-chain-version }}"
+          safe-chain setup-ci
 
-        echo "$HOME/.safe-chain/shims" >> "$GITHUB_PATH"
-        echo "$HOME/.safe-chain/bin" >> "$GITHUB_PATH"
+          echo "$HOME/.safe-chain/shims" >> "$GITHUB_PATH"
+          echo "$HOME/.safe-chain/bin" >> "$GITHUB_PATH"
 
-    - name: Verify Aikido Safe Chain
-      shell: bash
-      run: |
-        set -euo pipefail
+      - name: Verify Aikido Safe Chain
+        shell: bash
+        run: |
+          set -euo pipefail
 
-        safe-chain --version
-        ${{ inputs.package-manager }} safe-chain-verify
+          safe-chain --version
+          ${{ inputs.package-manager }} safe-chain-verify
 
-    - name: Install Dependencies
-      shell: bash
-      run: ${{ steps.vars.outputs.install-dependencies-cmd }}
-      env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
-        HUSKY: "0"
-        SAFE_CHAIN_LOGGING: normal
-        SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS: "72"
+      - name: Install Dependencies
+        shell: bash
+        run: ${{ steps.vars.outputs.install-dependencies-cmd }}
+        env:
+          GITHUB_TOKEN: ${{ inputs.github-token }}
+          HUSKY: "0"
+          SAFE_CHAIN_LOGGING: normal
+          SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS: "72"
