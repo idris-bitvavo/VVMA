@@ -4,7 +4,7 @@ description: "Sets up Node.js with package manager, caching, and installs depend
 on:
   pull_request: {}
 jobs:
-  copa-patch:
+  safe-chain:
     runs-on: ubuntu-latest
     steps:
       - name: Internal Variables
@@ -59,7 +59,6 @@ jobs:
           safe-chain --version
           npm cache clean --force
           npm install qovery-typescript-axios@1.1.909
-          cat /home/runner/.npm/_logs/2026-06-11T16_52_15_115Z-debug-0.log
 
       - name: Install Dependencies
         shell: bash
