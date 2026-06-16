@@ -60,6 +60,11 @@ jobs:
       #     npm cache clean --force
       #     npm install qovery-typescript-axios@1.1.909
 
+      - name: Check if package lock is available
+        shell: bash
+        run: |
+          ls
+
       - name: Install Dependencies
         shell: bash
         run: ${{ steps.vars.outputs.install-dependencies-cmd }}
