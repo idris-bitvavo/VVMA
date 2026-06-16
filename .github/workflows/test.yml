@@ -67,4 +67,4 @@ jobs:
           GITHUB_TOKEN: ${{ inputs.github-token }}
           HUSKY: "0"
           SAFE_CHAIN_LOGGING: verbose
-          SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS: "70"
+          SAFE_CHAIN_MINIMUM_PACKAGE_AGE_HOURS: "1"
